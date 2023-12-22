@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://431jwwj4oqw0"]
+[gd_scene load_steps=9 format=3 uid="uid://431jwwj4oqw0"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_873yv"]
 [ext_resource type="Texture2D" uid="uid://cwpggn1u07fhs" path="res://assets/images/players/mammet_staff.png" id="2_0yi07"]
 [ext_resource type="PackedScene" uid="uid://13xcnv5ca4mn" path="res://attacks/fireball.tscn" id="2_411rp"]
+[ext_resource type="PackedScene" uid="uid://dbr0gw4s8mjcm" path="res://health_bar.tscn" id="4_net3o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_me2un"]
 atlas = ExtResource("2_0yi07")
@@ -35,6 +36,7 @@ collision_mask = 2
 script = ExtResource("1_873yv")
 Attack = ExtResource("2_411rp")
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hd3h")
@@ -44,6 +46,9 @@ autoplay = "default"
 visible = false
 position = Vector2(2, 4)
 shape = SubResource("RectangleShape2D_f3pkh")
+
+[node name="HealthBar" parent="." instance=ExtResource("4_net3o")]
+position = Vector2(0, 40)
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.5

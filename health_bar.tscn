@@ -1,0 +1,95 @@
+[gd_scene load_steps=15 format=3 uid="uid://dbr0gw4s8mjcm"]
+
+[ext_resource type="Texture2D" uid="uid://b623avtsnfqxl" path="res://assets/images/health_bar.png" id="1_4x5ov"]
+[ext_resource type="Script" path="res://health_bar.gd" id="2_sxo6s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3qnd"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 60, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vgpy"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 54, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lwp8"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 48, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvldn"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 42, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hw5a"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 36, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag1pq"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 30, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qb30"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 24, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4je5"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 18, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62rpq"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 12, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cw03"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 6, 32, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7iyn"]
+atlas = ExtResource("1_4x5ov")
+region = Rect2(0, 0, 32, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eb3cp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3qnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vgpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lwp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvldn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hw5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag1pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qb30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4je5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62rpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cw03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7iyn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HealthBar" type="AnimatedSprite2D"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_eb3cp")
+frame = 10
+script = ExtResource("2_sxo6s")

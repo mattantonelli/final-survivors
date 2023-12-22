@@ -28,9 +28,8 @@ func start_game():
 	$SpawnTimer.wait_time = 1.0
 	$SpawnTimer.start()
 
+	$Player.respawn()
 	$Player.position = $StartPosition.position
-	$Player.hp = $Player.max_hp
-	$Player.show()
 
 	get_node("CanvasLayer/RetryButton").hide()
 

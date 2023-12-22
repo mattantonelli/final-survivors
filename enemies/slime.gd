@@ -10,8 +10,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	if (target):
-		# Move towards the target (player)
+	# If the enemy has a target (player) and has not already reached them
+	if (target && target.visible && !has_overlapping_areas()):
+		# Move towards the target
 		var velocity = (target.position - position).normalized()
 		position += velocity * speed * delta
 

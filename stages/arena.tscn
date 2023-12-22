@@ -51,6 +51,7 @@ autostart = true
 [node name="Player" parent="." instance=ExtResource("4_g2ls3")]
 visible = false
 position = Vector2(576, 324)
+max_hp = 3
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(576, 324)

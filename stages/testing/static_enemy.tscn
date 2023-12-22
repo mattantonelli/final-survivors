@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjyspqrq80uv1"]
+
+[ext_resource type="PackedScene" uid="uid://431jwwj4oqw0" path="res://player.tscn" id="1_n6rhv"]
+[ext_resource type="PackedScene" uid="uid://cbp88e68ysxkx" path="res://enemies/slime.tscn" id="2_wyqwe"]
+
+[node name="StaticEnemy" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_n6rhv")]
+position = Vector2(566, 326)
+max_hp = 20
+
+[node name="Slime" parent="." instance=ExtResource("2_wyqwe")]
+position = Vector2(443, 335)
+speed = 0

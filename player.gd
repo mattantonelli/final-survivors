@@ -12,15 +12,21 @@ signal hp_changed(amount: int)
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	hp = max_hp
+	set_hp(max_hp)
 
 
 func _process(delta):
+	# Disable actions if the player is dead
+	if hp == 0: return
+
 	process_movement(delta)
-	process_collisions()
 
 	if Input.is_action_just_pressed("attack"):
 		process_attack()
+
+
+func _physics_process(_delta):
+	process_collisions()
 
 
 func process_attack():
@@ -39,9 +45,6 @@ func process_attack():
 
 
 func process_movement(delta):
-	# Disable movement if the player is dead
-	if hp == 0: return
-
 	var velocity = Vector2.ZERO
 
 	# Handle movement input
@@ -78,13 +81,11 @@ func process_collisions():
 		modulate = Color(1, 1, 1, 1)
 
 
-func damage(amount):
+func damage(value: int):
 	# If the player is vulnerable
 	if $InvulnerabilityTimer.is_stopped():
 		# Reduce the player's health to a minimum of 0 based on the damage
-		hp = maxi(hp - amount, 0)
-		print ("Player hit! HP: %s" % hp)
-		hp_changed.emit(hp)
+		set_hp(maxi(hp - value, 0))
 
 		if (hp == 0):
 			# If HP reaches 0, hide the Player and disable collision
@@ -93,3 +94,15 @@ func damage(amount):
 		else:
 			# Otherwise, start the invulnerability window
 			$InvulnerabilityTimer.start()
+
+
+func respawn():
+	set_hp(max_hp)
+	$CollisionShape2D.set_deferred("disabled", false)
+	show()
+
+
+func set_hp(value: int):
+	hp = value
+	$HealthBar.update(value, max_hp)
+	hp_changed.emit(value)

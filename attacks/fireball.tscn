@@ -74,7 +74,6 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6ty4"]
-size = Vector2(20, 20)
 
 [node name="Fireball" type="Area2D"]
 collision_layer = 4

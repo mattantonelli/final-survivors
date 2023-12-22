@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Final Survirors"
-run/main_scene="res://main.tscn"
+run/main_scene="res://stages/arena.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

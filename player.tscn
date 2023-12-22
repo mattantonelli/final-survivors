@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://431jwwj4oqw0"]
+[gd_scene load_steps=8 format=3 uid="uid://431jwwj4oqw0"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_873yv"]
 [ext_resource type="Texture2D" uid="uid://cwpggn1u07fhs" path="res://assets/images/players/mammet_staff.png" id="2_0yi07"]
 [ext_resource type="PackedScene" uid="uid://13xcnv5ca4mn" path="res://attacks/fireball.tscn" id="2_411rp"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqxk4"]
-load_path = "res://.godot/imported/mammet_staff.png-7270087f90bca0e5e4b8e391a68cdab7.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_me2un"]
 atlas = ExtResource("2_0yi07")
@@ -33,14 +30,11 @@ animations = [{
 size = Vector2(24, 32)
 
 [node name="Player" type="Area2D"]
-collision_mask = 0
+z_index = 1
+collision_mask = 2
 script = ExtResource("1_873yv")
 Attack = ExtResource("2_411rp")
 metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = SubResource("CompressedTexture2D_qqxk4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hd3h")
@@ -50,3 +44,7 @@ autoplay = "default"
 visible = false
 position = Vector2(2, 4)
 shape = SubResource("RectangleShape2D_f3pkh")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

@@ -53,3 +53,7 @@ position = Vector2(0, 40)
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

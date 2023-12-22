@@ -45,13 +45,13 @@ curve = SubResource("Curve2D_xjmxl")
 position = Vector2(-64, -65)
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("4_g2ls3")]
 visible = false
 position = Vector2(576, 324)
-max_hp = 3
+max_hp = 5
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(576, 324)

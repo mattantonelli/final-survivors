@@ -20,9 +20,7 @@ func _process(delta):
 	if hp == 0: return
 
 	process_movement(delta)
-
-	if Input.is_action_just_pressed("attack"):
-		process_attack()
+	process_attack()
 
 
 func _physics_process(_delta):
@@ -30,18 +28,23 @@ func _physics_process(_delta):
 
 
 func process_attack():
-	var click = get_viewport().get_mouse_position()
-	var projectile = Attack.instantiate()
+	if (Input.is_action_pressed("attack") &&
+		$AttackCooldownTimer.is_stopped()):
 
-	# Spawn the projectile at the player's position
-	var velocity = (click - position).normalized()
-	projectile.position = position
+		$AttackCooldownTimer.start()
 
-	# Rotate and fire towards the cursor location
-	projectile.velocity = (click - position).normalized()
-	projectile.rotation = projectile.velocity.angle()
+		var click = get_viewport().get_mouse_position()
+		var projectile = Attack.instantiate()
 
-	get_parent().add_child(projectile)
+		# Spawn the projectile at the player's position
+		var velocity = (click - position).normalized()
+		projectile.position = position
+
+		# Rotate and fire towards the cursor location
+		projectile.velocity = (click - position).normalized()
+		projectile.rotation = projectile.velocity.angle()
+
+		get_parent().add_child(projectile)
 
 
 func process_movement(delta):

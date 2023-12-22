@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbp88e68ysxkx"]
+
+[ext_resource type="Script" path="res://enemies/slime.gd" id="1_5l0kh"]
+[ext_resource type="Texture2D" uid="uid://d07xmi3iqiglr" path="res://assets/images/enemies/slime.png" id="1_6pbdx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukniq"]
+atlas = ExtResource("1_6pbdx")
+region = Rect2(0, 0, 62, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smlt2"]
+atlas = ExtResource("1_6pbdx")
+region = Rect2(62, 0, 62, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3rlo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smlt2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7y6fe"]
+size = Vector2(33, 32)
+
+[node name="Slime" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_5l0kh")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q3rlo")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_7y6fe")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,11 +1,9 @@
 extends Area2D
 
+@export var atk = 1
 @export var speed = 400
+
 var velocity : Vector2 # Firing direction
-
-
-func _ready():
-	pass
 
 
 func _physics_process(delta):
@@ -18,5 +16,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_area_entered(area):
-	area.damage()
+	area.damage(atk)
 	queue_free()

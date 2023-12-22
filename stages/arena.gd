@@ -2,12 +2,9 @@ extends Node
 
 @export var Enemy : PackedScene
 
+
 func _ready():
 	$Player.show()
-
-
-func _process(_delta):
-	pass
 
 
 func spawn_enemy():
@@ -23,8 +20,9 @@ func spawn_enemy():
 
 
 func start_game():
-	# Remove old enemies and reset the spawn timer
+	# Remove old nodes and reset the spawn timer
 	get_tree().call_group("enemies", "queue_free")
+	get_tree().call_group("projectiles", "queue_free")
 	$SpawnTimer.wait_time = 1.0
 	$SpawnTimer.start()
 

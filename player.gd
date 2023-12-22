@@ -4,8 +4,8 @@ extends Area2D
 @export var max_hp = 10
 @export var speed = 300
 
-var screen_size
 var hp: int
+var screen_size
 
 signal hp_changed(amount: int)
 

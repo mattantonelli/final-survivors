@@ -1,24 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dup2hg3djpors"]
+[gd_scene load_steps=7 format=3 uid="uid://baegbd4mnfscu"]
 
-[ext_resource type="Texture2D" uid="uid://d07xmi3iqiglr" path="res://assets/images/enemies/slime.png" id="1_6pbdx"]
-[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_l25yq"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_clmu2"]
+[ext_resource type="Texture2D" uid="uid://clpii5urjglqp" path="res://assets/images/enemies/golem.png" id="1_i5qkf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ukniq"]
-atlas = ExtResource("1_6pbdx")
-region = Rect2(0, 0, 62, 52)
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8w77"]
+atlas = ExtResource("1_i5qkf")
+region = Rect2(0, 0, 104, 94)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_smlt2"]
-atlas = ExtResource("1_6pbdx")
-region = Rect2(62, 0, 62, 52)
+[sub_resource type="AtlasTexture" id="AtlasTexture_64no6"]
+atlas = ExtResource("1_i5qkf")
+region = Rect2(104, 0, 104, 94)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q3rlo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ukniq")
+"texture": SubResource("AtlasTexture_w8w77")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_smlt2")
+"texture": SubResource("AtlasTexture_64no6")
 }],
 "loop": true,
 "name": &"default",
@@ -26,11 +26,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7y6fe"]
-size = Vector2(33, 32)
+size = Vector2(77.5, 66)
 
-[node name="Slime" type="Area2D" groups=["enemies"]]
+[node name="Golem" type="Area2D" groups=["enemies"]]
 collision_layer = 2
-script = ExtResource("1_l25yq")
+script = ExtResource("1_clmu2")
+atk = 5
+max_hp = 20
+speed = 60
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -39,7 +42,7 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(0.5, 0)
+position = Vector2(1.25, 2)
 shape = SubResource("RectangleShape2D_7y6fe")
 
 [node name="HitFlashTimer" type="Timer" parent="."]

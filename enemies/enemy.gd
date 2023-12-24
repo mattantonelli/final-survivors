@@ -33,7 +33,7 @@ func _physics_process(delta):
 
 		# Animate facing based on horizontal velocity
 		if velocity.x != 0:
-			$AnimatedSprite2D.flip_h = velocity.x < 0
+			$AnimatedSprite2D.flip_h = velocity.x > 0
 
 
 func damage(value):

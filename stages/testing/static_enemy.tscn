@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjyspqrq80uv1"]
+[gd_scene load_steps=5 format=3 uid="uid://bjyspqrq80uv1"]
 
 [ext_resource type="PackedScene" uid="uid://431jwwj4oqw0" path="res://player.tscn" id="1_n6rhv"]
-[ext_resource type="PackedScene" uid="uid://cbp88e68ysxkx" path="res://enemies/slime.tscn" id="2_wyqwe"]
+[ext_resource type="PackedScene" uid="uid://dup2hg3djpors" path="res://enemies/slime.tscn" id="2_4sud7"]
+[ext_resource type="PackedScene" uid="uid://baegbd4mnfscu" path="res://enemies/golem.tscn" id="2_nmc88"]
+[ext_resource type="PackedScene" uid="uid://cbp88e68ysxkx" path="res://enemies/pudding.tscn" id="3_13dyh"]
 
 [node name="StaticEnemy" type="Node"]
 
@@ -9,14 +11,11 @@
 position = Vector2(566, 326)
 max_hp = 20
 
-[node name="Slime" parent="." instance=ExtResource("2_wyqwe")]
-position = Vector2(443, 335)
-speed = 0
+[node name="Slime" parent="." instance=ExtResource("2_4sud7")]
+position = Vector2(365, 324)
 
-[node name="Slime2" parent="." instance=ExtResource("2_wyqwe")]
-position = Vector2(739, 346)
-speed = 0
+[node name="Pudding" parent="." instance=ExtResource("3_13dyh")]
+position = Vector2(805, 464)
 
-[node name="Slime3" parent="." instance=ExtResource("2_wyqwe")]
-position = Vector2(741, 323)
-speed = 0
+[node name="Golem" parent="." instance=ExtResource("2_nmc88")]
+position = Vector2(757, 207)

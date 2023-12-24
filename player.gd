@@ -71,11 +71,12 @@ func process_movement(delta):
 
 
 func process_collisions():
-	if has_overlapping_areas():
+	var enemies = get_overlapping_areas()
+
+	if enemies.size() > 0:
 		# If an enemy is overlapping the player, take damage
 		# TODO: Maybe take the maximum hit here instead of the "first"
-		var enemy = get_overlapping_areas()[0]
-		damage(enemy.atk)
+		damage(enemies[0].atk)
 
 		# Set a red color mask to indicate damage
 		modulate = Color(1, 0, 0, 1)

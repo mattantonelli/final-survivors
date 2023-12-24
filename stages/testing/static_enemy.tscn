@@ -12,3 +12,11 @@ max_hp = 20
 [node name="Slime" parent="." instance=ExtResource("2_wyqwe")]
 position = Vector2(443, 335)
 speed = 0
+
+[node name="Slime2" parent="." instance=ExtResource("2_wyqwe")]
+position = Vector2(739, 346)
+speed = 0
+
+[node name="Slime3" parent="." instance=ExtResource("2_wyqwe")]
+position = Vector2(741, 323)
+speed = 0

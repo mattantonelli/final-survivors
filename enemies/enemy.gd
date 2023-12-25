@@ -9,6 +9,8 @@ var hp: int
 var opacity = 1.0
 var target : Node2D
 
+const DamageNumber = preload("res://damage_number.tscn")
+
 
 func _ready():
 	hp = max_hp
@@ -39,6 +41,11 @@ func _physics_process(delta):
 func damage(value):
 	# Reduce HP to a minimum of 0
 	hp = maxi(hp - value, 0)
+
+	# Display the damage number
+	var damage_number = DamageNumber.instantiate()
+	damage_number.set_text(str(value))
+	add_child(damage_number)
 
 	# Flash white
 	modulate = Color(100, 100, 100, opacity)

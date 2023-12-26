@@ -1,9 +1,12 @@
 extends Area2D
 
 @export var Attack : PackedScene
+@export var level = 1
 @export var max_hp = 10
 @export var speed = 300
 
+var xp = 0
+var next_level_xp : int
 var hp : int
 var move_limit : Vector2
 
@@ -12,6 +15,7 @@ signal hp_changed(amount: int)
 
 func _ready():
 	move_limit = get_viewport_rect().size
+	set_next_level_xp()
 	set_hp(max_hp)
 
 
@@ -35,6 +39,7 @@ func process_attack():
 
 		var click = get_global_mouse_position()
 		var projectile = Attack.instantiate()
+		projectile.atk *= level
 
 		# Spawn the projectile at the player's position
 		var velocity = (click - position).normalized()
@@ -100,6 +105,20 @@ func damage(value : int):
 			$InvulnerabilityTimer.start()
 
 
+func give_xp(value : int):
+	print("Giving the player %s XP" % value)
+	xp += value
+
+	if xp >= next_level_xp:
+		level += 1
+		print("Level up! Player is now level %s" % level)
+
+		var leftover = xp - next_level_xp
+		xp = leftover
+		set_next_level_xp()
+
+
+
 func respawn():
 	set_hp(max_hp)
 	$CollisionShape2D.set_deferred("disabled", false)
@@ -110,3 +129,7 @@ func set_hp(value : int):
 	hp = value
 	$HealthBar.update(value, max_hp)
 	hp_changed.emit(value)
+
+
+func set_next_level_xp():
+	next_level_xp = level * 5

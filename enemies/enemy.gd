@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var atk = 1
+@export var xp = 1
 @export var max_hp = 2
 @export var speed = 80
 
@@ -8,6 +9,8 @@ var hit = false
 var hp: int
 var opacity = 1.0
 var target : Node2D
+
+signal give_xp(amount : int)
 
 const DamageNumber = preload("res://damage_number.tscn")
 
@@ -19,6 +22,7 @@ func _ready():
 
 func _process(delta):
 	if opacity <= 0 && !has_node("DamageNumber"):
+		give_xp.emit(xp)
 		queue_free()
 	if hp == 0:
 		# Fade to death once HP reaches 0

@@ -13,6 +13,8 @@ func spawn_enemy():
 		#$SpawnTimer.wait_time -= 0.05
 
 	var enemy = Enemy.instantiate()
+	enemy.give_xp.connect(Callable($Player, "give_xp"))
+
 	var spawn_point = $Player/EnemySpawnPath/EnemySpawnPoint
 	spawn_point.progress_ratio = randf()
 	enemy.position = spawn_point.global_position

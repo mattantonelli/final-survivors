@@ -18,13 +18,13 @@ func _ready():
 
 
 func _process(delta):
-	if opacity <= 0:
-		# Delete the node after it has completely faded
+	if opacity <= 0 && !has_node("DamageNumber"):
 		queue_free()
 	if hp == 0:
 		# Fade to death once HP reaches 0
 		opacity -= delta * 12
 		modulate.a = opacity
+
 
 func _physics_process(delta):
 	# If the enemy has a target (player) and has not already reached them

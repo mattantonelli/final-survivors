@@ -1,16 +1,17 @@
 extends Area2D
 
-@export var Attack : PackedScene
+@export var Attack: PackedScene
 @export var level = 1
 @export var max_hp = 10
 @export var speed = 300
 
 var xp = 0
-var next_level_xp : int
-var hp : int
-var move_limit : Vector2
+var next_level_xp: int
+var hp: int
+var move_limit: Vector2
 
 signal hp_changed(amount: int)
+signal level_changed(amount: int)
 
 const FloatingText = preload("res://floating_text.tscn")
 
@@ -36,6 +37,7 @@ func _physics_process(_delta):
 func process_attack():
 	if (Input.is_action_pressed("attack") &&
 		$AttackCooldownTimer.is_stopped()):
+		print("Player position: %s" % global_position)
 
 		$AttackCooldownTimer.start()
 
@@ -92,7 +94,7 @@ func process_collisions():
 		modulate = Color(1, 1, 1, 1)
 
 
-func damage(value : int):
+func damage(value: int):
 	# If the player is vulnerable
 	if $InvulnerabilityTimer.is_stopped():
 		# Reduce the player's health to a minimum of 0 based on the damage
@@ -107,13 +109,12 @@ func damage(value : int):
 			$InvulnerabilityTimer.start()
 
 
-func give_xp(value : int):
-	print("Giving the player %s XP" % value)
+func give_xp(value: int):
 	xp += value
 
 	if xp >= next_level_xp:
 		level += 1
-		print("Level up! Player is now level %s" % level)
+		level_changed.emit(level)
 
 		var notice = FloatingText.instantiate()
 		notice.set_text("Level Up!")
@@ -127,12 +128,15 @@ func give_xp(value : int):
 
 
 func respawn():
+	xp = 0
+	level = 0
+	set_next_level_xp()
 	set_hp(max_hp)
 	$CollisionShape2D.set_deferred("disabled", false)
 	show()
 
 
-func set_hp(value : int):
+func set_hp(value: int):
 	hp = value
 	$HealthBar.update(value, max_hp)
 	hp_changed.emit(value)

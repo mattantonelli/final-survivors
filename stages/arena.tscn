@@ -41,7 +41,7 @@ text = "Try Again"
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("4_g2ls3")]
-position = Vector2(1220, 640)
+position = Vector2(1152, 640)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 

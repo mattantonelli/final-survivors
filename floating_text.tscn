@@ -12,10 +12,10 @@ point_count = 2
 [node name="FloatingText" type="Node2D"]
 script = ExtResource("1_6bph8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 top_level = true
+z_index = 2
 offset_right = 1152.0
 offset_bottom = 640.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

@@ -47,6 +47,7 @@ func damage(value):
 	hp = maxi(hp - value, 0)
 
 	# Display the damage number
+	print("Spawning floating text for entity at %s" % position)
 	var damage_number = FloatingText.instantiate()
 	damage_number.set_text(str(value))
 	add_child(damage_number)

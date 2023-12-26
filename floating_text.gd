@@ -6,8 +6,12 @@ var speed = 3.0
 
 func _ready():
 	# Shift the position to the center point of the label
-	position -= Vector2($CanvasLayer/RichTextLabel.get_content_width() / 2,
-		$CanvasLayer/RichTextLabel.get_content_height() / 2)
+	position -= Vector2($RichTextLabel.get_content_width() / 2,
+		$RichTextLabel.get_content_height() / 2)
+
+	# Position the label along the float path and display it
+	$RichTextLabel.position = $FloatPath/FloatPoint.global_position
+	$RichTextLabel.show()
 
 
 func _process(delta):
@@ -18,13 +22,13 @@ func _process(delta):
 
 	if peaked:
 		location.progress_ratio = maxf(location.progress_ratio - delta * speed, 0.0)
-		$CanvasLayer/RichTextLabel.modulate.a = location.progress_ratio
+		$RichTextLabel.modulate.a = location.progress_ratio
 	else:
 		location.progress_ratio = minf(location.progress_ratio + delta * speed, 1.0)
 		peaked = location.progress_ratio == 1.0
 
-	$CanvasLayer/RichTextLabel.position = location.global_position
+	$RichTextLabel.position = location.global_position
 
 
 func set_text(text: String):
-	$CanvasLayer/RichTextLabel.text = text
+	$RichTextLabel.text = text

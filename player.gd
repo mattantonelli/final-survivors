@@ -12,6 +12,8 @@ var move_limit : Vector2
 
 signal hp_changed(amount: int)
 
+const FloatingText = preload("res://floating_text.tscn")
+
 
 func _ready():
 	move_limit = get_viewport_rect().size
@@ -113,6 +115,11 @@ func give_xp(value : int):
 		level += 1
 		print("Level up! Player is now level %s" % level)
 
+		var notice = FloatingText.instantiate()
+		notice.set_text("Level Up!")
+		notice.speed = 2.0
+		add_child(notice)
+
 		var leftover = xp - next_level_xp
 		xp = leftover
 		set_next_level_xp()
@@ -132,4 +139,5 @@ func set_hp(value : int):
 
 
 func set_next_level_xp():
-	next_level_xp = level * 5
+	#next_level_xp = level * 5
+	next_level_xp = 1

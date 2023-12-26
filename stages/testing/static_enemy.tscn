@@ -22,3 +22,7 @@ speed = 0
 [node name="Golem" parent="." instance=ExtResource("2_nmc88")]
 position = Vector2(757, 207)
 speed = 0
+
+[connection signal="give_xp" from="Slime" to="Player" method="give_xp"]
+[connection signal="give_xp" from="Pudding" to="Player" method="give_xp"]
+[connection signal="give_xp" from="Golem" to="Player" method="give_xp"]

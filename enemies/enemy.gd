@@ -12,7 +12,7 @@ var target : Node2D
 
 signal give_xp(amount : int)
 
-const DamageNumber = preload("res://damage_number.tscn")
+const FloatingText = preload("res://floating_text.tscn")
 
 
 func _ready():
@@ -21,12 +21,12 @@ func _ready():
 
 
 func _process(delta):
-	if opacity <= 0 && !has_node("DamageNumber"):
+	if opacity <= 0 && !has_node("FloatingText"):
 		give_xp.emit(xp)
 		queue_free()
 	if hp == 0:
 		# Fade to death once HP reaches 0
-		opacity -= delta * 12
+		opacity -= delta * 5
 		modulate.a = opacity
 
 
@@ -47,7 +47,7 @@ func damage(value):
 	hp = maxi(hp - value, 0)
 
 	# Display the damage number
-	var damage_number = DamageNumber.instantiate()
+	var damage_number = FloatingText.instantiate()
 	damage_number.set_text(str(value))
 	add_child(damage_number)
 

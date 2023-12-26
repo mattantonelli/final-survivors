@@ -32,7 +32,8 @@ size = Vector2(77.5, 66)
 collision_layer = 2
 script = ExtResource("1_clmu2")
 atk = 5
-max_hp = 20
+xp = 10
+max_hp = 50
 speed = 60
 metadata/_edit_group_ = true
 

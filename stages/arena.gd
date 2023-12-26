@@ -1,7 +1,10 @@
 extends Node
 
-@export var Enemy : PackedScene
-
+const enemies = [
+	preload("res://enemies/slime.tscn"),
+	preload("res://enemies/pudding.tscn"),
+	preload("res://enemies/golem.tscn")
+]
 
 func _ready():
 	set_camera_limits()
@@ -9,10 +12,20 @@ func _ready():
 
 
 func spawn_enemy():
+	var enemy_scene: PackedScene
+
+	match $Player.level:
+		1, 2:
+			enemy_scene = enemies[0]
+		3, 4:
+			enemy_scene = enemies[1]
+		_:
+			enemy_scene = enemies[2]
+
 	#if $SpawnTimer.wait_time > 0.2:
 		#$SpawnTimer.wait_time -= 0.05
 
-	var enemy = Enemy.instantiate()
+	var enemy = enemy_scene.instantiate()
 	enemy.give_xp.connect(Callable($Player, "give_xp"))
 
 	var spawn_point = $Player/EnemySpawnPath/EnemySpawnPoint

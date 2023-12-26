@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://366kewl7ljjq"]
+[gd_scene load_steps=5 format=3 uid="uid://366kewl7ljjq"]
 
 [ext_resource type="Script" path="res://stages/arena.gd" id="1_bnlxw"]
-[ext_resource type="PackedScene" uid="uid://dup2hg3djpors" path="res://enemies/slime.tscn" id="2_a3qja"]
 [ext_resource type="TileSet" uid="uid://d0smdbap4y0rd" path="res://assets/images/tiles/grass.tres" id="3_6ggtn"]
 [ext_resource type="PackedScene" uid="uid://431jwwj4oqw0" path="res://player.tscn" id="4_g2ls3"]
 
@@ -13,7 +12,6 @@ point_count = 5
 
 [node name="Arena" type="Node"]
 script = ExtResource("1_bnlxw")
-Enemy = ExtResource("2_a3qja")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("3_6ggtn")

@@ -32,7 +32,8 @@ size = Vector2(37, 42)
 collision_layer = 2
 script = ExtResource("1_l25yq")
 atk = 2
-max_hp = 5
+xp = 4
+max_hp = 15
 speed = 100
 metadata/_edit_group_ = true
 

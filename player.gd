@@ -35,10 +35,7 @@ func _physics_process(_delta):
 
 
 func process_attack():
-	if (Input.is_action_pressed("attack") &&
-		$AttackCooldownTimer.is_stopped()):
-		print("Player position: %s" % global_position)
-
+	if Input.is_action_pressed("attack") && $AttackCooldownTimer.is_stopped():
 		$AttackCooldownTimer.start()
 
 		var click = get_global_mouse_position()
@@ -113,6 +110,8 @@ func give_xp(value: int):
 	xp += value
 
 	if xp >= next_level_xp:
+		max_hp += 2
+		set_hp(hp + 2)
 		level += 1
 		level_changed.emit(level)
 
@@ -129,7 +128,7 @@ func give_xp(value: int):
 
 func respawn():
 	xp = 0
-	level = 0
+	level = 1
 	set_next_level_xp()
 	set_hp(max_hp)
 	$CollisionShape2D.set_deferred("disabled", false)
@@ -143,5 +142,4 @@ func set_hp(value: int):
 
 
 func set_next_level_xp():
-	#next_level_xp = level * 5
-	next_level_xp = 1
+	next_level_xp = level * 5

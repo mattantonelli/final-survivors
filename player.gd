@@ -4,14 +4,14 @@ extends Area2D
 @export var max_hp = 10
 @export var speed = 300
 
-var hp: int
-var screen_size
+var hp : int
+var move_limit : Vector2
 
 signal hp_changed(amount: int)
 
 
 func _ready():
-	screen_size = get_viewport_rect().size
+	move_limit = get_viewport_rect().size
 	set_hp(max_hp)
 
 
@@ -33,7 +33,7 @@ func process_attack():
 
 		$AttackCooldownTimer.start()
 
-		var click = get_viewport().get_mouse_position()
+		var click = get_global_mouse_position()
 		var projectile = Attack.instantiate()
 
 		# Spawn the projectile at the player's position
@@ -63,7 +63,7 @@ func process_movement(delta):
 	velocity = velocity.normalized() * speed
 
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	position = position.clamp(Vector2.ZERO, move_limit)
 
 	# Animate facing based on horizontal velocity
 	if velocity.x != 0:
@@ -85,7 +85,7 @@ func process_collisions():
 		modulate = Color(1, 1, 1, 1)
 
 
-func damage(value: int):
+func damage(value : int):
 	# If the player is vulnerable
 	if $InvulnerabilityTimer.is_stopped():
 		# Reduce the player's health to a minimum of 0 based on the damage
@@ -106,7 +106,7 @@ func respawn():
 	show()
 
 
-func set_hp(value: int):
+func set_hp(value : int):
 	hp = value
 	$HealthBar.update(value, max_hp)
 	hp_changed.emit(value)

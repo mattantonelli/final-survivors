@@ -4,17 +4,18 @@ extends Node
 
 
 func _ready():
+	set_camera_limits()
 	$Player.show()
 
 
 func spawn_enemy():
-	if $SpawnTimer.wait_time > 0.2:
-		$SpawnTimer.wait_time -= 0.05
+	#if $SpawnTimer.wait_time > 0.2:
+		#$SpawnTimer.wait_time -= 0.05
 
 	var enemy = Enemy.instantiate()
-	var spawn_point = get_node("EnemySpawnPath/EnemySpawnPoint")
+	var spawn_point = $Player/EnemySpawnPath/EnemySpawnPoint
 	spawn_point.progress_ratio = randf()
-	enemy.position = spawn_point.position
+	enemy.position = spawn_point.global_position
 
 	add_child(enemy)
 
@@ -29,7 +30,20 @@ func start_game():
 	$Player.respawn()
 	$Player.position = $StartPosition.position
 
-	get_node("CanvasLayer/RetryButton").hide()
+	$CanvasLayer/RetryButton.hide()
+
+
+func set_camera_limits():
+	var map_limits = $TileMap.get_used_rect()
+	var tile_size = $TileMap.tile_set.tile_size
+
+	$Player/Camera2D.limit_left = map_limits.position.x * tile_size.x
+	$Player/Camera2D.limit_right = map_limits.end.x * tile_size.x
+	$Player/Camera2D.limit_top = map_limits.position.y * tile_size.y
+	$Player/Camera2D.limit_bottom = map_limits.end.y * tile_size.y
+
+	$Player.move_limit = Vector2(map_limits.end.x * tile_size.x,
+		map_limits.end.y * tile_size.y)
 
 
 func _on_player_hp_changed(amount):
